@@ -6,7 +6,7 @@ using System.Diagnostics;
 namespace Inspector
 {
     /// <summary>
-    /// Attribute that enables test execution of the specified method from a button shown in the Unity Inspector.
+    /// Attribute that enables invoking the specified method from a button shown in the Unity Inspector.
     /// </summary>
     [Conditional("UNITY_EDITOR")]
     [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
