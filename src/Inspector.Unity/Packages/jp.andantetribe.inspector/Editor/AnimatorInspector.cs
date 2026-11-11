@@ -1,6 +1,5 @@
 ﻿#nullable enable
 
-using System;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,20 +12,6 @@ namespace Inspector.Editor
     [CustomEditor(typeof(Animator))]
     public class AnimatorInspector : UnityComponentInspector<Animator>
     {
-        private readonly Lazy<GUIContent> _keepAnimatorStateStyle = new (static () =>
-        {
-            const string displayName = "Keep Animator State On Disable";
-            const string tooltip = "Whether to preserve the AnimatorController state when the GameObject is disabled.";
-            return EditorGUIUtility.TrTextContent(displayName + "|" + tooltip, displayName, tooltip, null);
-        });
-
-        private readonly Lazy<GUIContent> _writeDefaultValuesStyle = new (static () =>
-        {
-            const string displayName = "Write Default Values On Disable";
-            const string tooltip = "Whether to write default values when the Animator is disabled.";
-            return EditorGUIUtility.TrTextContent(displayName + "|" + tooltip, displayName, tooltip, null);
-        });
-
         private SerializedProperty? _keepAnimatorStateOnDisable;
         private SerializedProperty? _writeDefaultValuesOnDisable;
 
@@ -40,8 +25,19 @@ namespace Inspector.Editor
             _keepAnimatorStateOnDisable ??= serializedObject.FindProperty("m_KeepAnimatorStateOnDisable");
             _writeDefaultValuesOnDisable ??= serializedObject.FindProperty("m_WriteDefaultValuesOnDisable");
 
-            EditorGUILayout.PropertyField(_keepAnimatorStateOnDisable, _keepAnimatorStateStyle.Value);
-            EditorGUILayout.PropertyField(_writeDefaultValuesOnDisable, _writeDefaultValuesStyle.Value);
+            const string keepAnimatorStateDisplayName = "Keep Animator State On Disable";
+            const string keepAnimatorStateTooltip = "Whether to preserve the AnimatorController state when the GameObject is disabled.";
+            var keepAnimatorStateContent = EditorGUIUtility.TrTextContent(
+                keepAnimatorStateDisplayName + "|" + keepAnimatorStateTooltip,
+                keepAnimatorStateDisplayName, keepAnimatorStateTooltip, null);
+            EditorGUILayout.PropertyField(_keepAnimatorStateOnDisable, keepAnimatorStateContent);
+
+            const string writeDefaultValuesDisplayName = "Write Default Values On Disable";
+            const string writeDefaultValuesTooltip = "Whether to write default values when the Animator is disabled.";
+            var writeDefaultValuesContent = EditorGUIUtility.TrTextContent(
+                writeDefaultValuesDisplayName + "|" + writeDefaultValuesTooltip,
+                writeDefaultValuesDisplayName, writeDefaultValuesTooltip, null);
+            EditorGUILayout.PropertyField(_writeDefaultValuesOnDisable, writeDefaultValuesContent);
 
             serializedObject.ApplyModifiedProperties();
         }
