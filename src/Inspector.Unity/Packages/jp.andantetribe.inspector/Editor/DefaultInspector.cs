@@ -36,9 +36,7 @@ namespace Inspector.Editor
                         text = string.IsNullOrEmpty(attr.ButtonName) ? methodInfo.Name : attr.ButtonName
                     };
                     btn.RegisterCallback<ClickEvent, (MethodInfo method, UnityEngine.Object target, object[] args)>(static (_, args) =>
-                    {
-                        args.method.Invoke(args.target, args.args);
-                    }, (methodInfo, target, attr.Parameters));
+                        args.method.Invoke(args.target, args.args), (methodInfo, target, attr.Parameters));
                     root.Add(btn);
                 }
             }

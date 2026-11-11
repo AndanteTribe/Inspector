@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using UnityEditor;
 using UnityEngine;
@@ -30,16 +30,16 @@ namespace Inspector.Editor
             var keepAnimatorStateContent = EditorGUIUtility.TrTextContent(
                 keepAnimatorStateDisplayName + "|" + keepAnimatorStateTooltip,
                 keepAnimatorStateDisplayName, keepAnimatorStateTooltip, null);
-            EditorGUILayout.PropertyField(_keepAnimatorStateOnDisable, keepAnimatorStateContent);
+            _ = EditorGUILayout.PropertyField(_keepAnimatorStateOnDisable, keepAnimatorStateContent);
 
             const string writeDefaultValuesDisplayName = "Write Default Values On Disable";
             const string writeDefaultValuesTooltip = "Whether to write default values when the Animator is disabled.";
             var writeDefaultValuesContent = EditorGUIUtility.TrTextContent(
                 writeDefaultValuesDisplayName + "|" + writeDefaultValuesTooltip,
                 writeDefaultValuesDisplayName, writeDefaultValuesTooltip, null);
-            EditorGUILayout.PropertyField(_writeDefaultValuesOnDisable, writeDefaultValuesContent);
+            _ = EditorGUILayout.PropertyField(_writeDefaultValuesOnDisable, writeDefaultValuesContent);
 
-            serializedObject.ApplyModifiedProperties();
+            _ = serializedObject.ApplyModifiedProperties();
         }
     }
 }
