@@ -1,4 +1,4 @@
-﻿#nullable enable
+#nullable enable
 
 using UnityEditor;
 using UnityEngine;
@@ -22,8 +22,8 @@ namespace Inspector.Editor
             transform.position = EditorGUILayout.Vector3Field("World Position", transform.position);
             using (new EditorGUI.DisabledScope(true))
             {
-                EditorGUILayout.Vector3Field("World Rotation", transform.rotation.eulerAngles);
-                EditorGUILayout.Vector3Field("World Scale", transform.lossyScale);
+                _ = EditorGUILayout.Vector3Field("World Rotation", transform.rotation.eulerAngles);
+                _ = EditorGUILayout.Vector3Field("World Scale", transform.lossyScale);
             }
         }
     }
